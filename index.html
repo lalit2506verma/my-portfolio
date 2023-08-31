@@ -64,7 +64,7 @@
         }
 
         .firstSection>div {
-            width: 40%;
+            width: 45%;
             padding-left: 90px;
         }
 
@@ -146,36 +146,38 @@
             flex-direction: column;
             max-width: 80vw;
             margin: 80px auto;
-            height: 70vh;
+            height: 85vh;
         }
 
         .thirdSection h2 {
             margin: 15px 0px 0px 0px;
         }
 
-        .thirdSection .left-container {
+        .thirdSection .container {
             position: relative;
-            margin: 30px 0px 0px 0px;
             max-width: 500px;
             width: 50%;
             padding: 10px 20px;
         }
 
-        .left-container img {
-            margin: 0px 10px;
+        .container img {
+            margin-right: 10px;
             height: 30px;
         }
 
         .container {
             width: 100%;
-            background: #fff;
             margin: 0 15px;
             border-radius: 7px;
         }
 
         .container .skill-box {
             width: 100%;
-            margin: 25px 0;
+            margin: 45px 0;
+        }
+
+        .skill-box .skill-name {
+            display: flex;
         }
 
         .skill-box .title {
@@ -188,7 +190,7 @@
             height: 8px;
             width : 100%;
             border-radius: 6px;
-            margin-top: 6px;
+            margin-top: 15px;
             background: #fff;
         }
 
@@ -196,11 +198,30 @@
             position : relative;
             display: block;
             height : 100%;
-            width: 90%;
             border-radius: 6px;
             background: #4070f4;
             animation: progress 0.4s ease-in-out forwards;
             opacity: 0;
+        }
+        
+        .skill-per.html {
+            width: 80%;
+        }
+
+        .skill-per.css {
+            width: 70%;
+        }
+
+        .skill-per.javascript {
+            width: 60%;
+        }
+
+        .skill-per.angular {
+            width: 60%;
+        }
+
+        .skill-per.java {
+            width: 85%;
         }
 
         @keyframes progress {
@@ -378,13 +399,74 @@
             <span class="text-gray"> Here are my skills.</span>
             <h2> My Skills </h2>
 
-            <div class="left-container">
+            <div class="container">
+        
+                <!-- --------- skill-1 : HTML --------------  -->
+
                 <div class="skill-box">
-                    <img src="/asset/html-logo.png">
-                    <span class="title"> HTML </span>
+                    <div class="skill-name">
+                        <img src="/asset/html-logo.png">
+                        <span class="title"> HTML </span>
+                    </div>
                     <div class="skill-bar">
-                        <span class="skill-per">
-                            <span class="tooltip">90%</span>
+                        <span class="skill-per html">
+                            <span class="tooltip">80%</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- --------- skill-2 : CSS --------------  -->
+
+                <div class="skill-box">
+                    <div class="skill-name">
+                        <img src="/asset/CSS3_logo.png">
+                        <span class="title"> CSS </span>
+                    </div>
+                    <div class="skill-bar">
+                        <span class="skill-per css">
+                            <span class="tooltip">70%</span>
+                        </span>
+                    </div>
+                </div>
+
+               <!-- --------- skill-3 : JavaScript --------------  -->
+
+                <div class="skill-box">
+                    <div class="skill-name">
+                        <img src="/asset/JavaScript-logo.png">
+                        <span class="title"> JavaScript </span>
+                    </div>
+                    <div class="skill-bar">
+                        <span class="skill-per javascript">
+                            <span class="tooltip">60%</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- --------- skill-4 : Angular 8L--------------  -->
+
+                <div class="skill-box">
+                    <div class="skill-name">
+                        <img src="/asset/angular-logo.png">
+                        <span class="title"> Angular 8 </span>
+                    </div>
+                    <div class="skill-bar">
+                        <span class="skill-per angular">
+                            <span class="tooltip">60%</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- --------- skill-5 : Java--------------  -->
+
+                <div class="skill-box">
+                    <div class="skill-name">
+                        <img src="/asset/Java-logo.png">
+                        <span class="title"> Java </span>
+                    </div>
+                    <div class="skill-bar">
+                        <span class="skill-per java">
+                            <span class="tooltip">85%</span>
                         </span>
                     </div>
                 </div>
