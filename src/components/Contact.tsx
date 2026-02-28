@@ -46,10 +46,10 @@ export default function Contact() {
                         Email
                       </p>
                       <a
-                        href="mailto:hello@devportfolio.com"
+                        href="mailto:lalit2506verma@gmail.com"
                         className="text-slate-900 font-medium hover:text-primary transition-colors"
                       >
-                        hello@devportfolio.com
+                        lalit2506verma@gmail.com
                       </a>
                     </div>
                   </div>
@@ -59,12 +59,12 @@ export default function Contact() {
                         location_on
                       </span>
                     </div>
-                    <div>
+                    <div className="flex-1 min-w-0">
                       <p className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-1">
                         Location
                       </p>
                       <p className="text-slate-900 font-medium">
-                        San Francisco, CA
+                        Faridabad, India
                       </p>
                       <p className="text-slate-500 text-sm">
                         Open to remote work
@@ -80,18 +80,16 @@ export default function Contact() {
                 </h3>
                 <div className="flex flex-col gap-4">
                   <a
-                    href="#"
+                    href="https://www.linkedin.com/in/lalit2506verma/"
                     className="group flex items-center gap-4 p-3 rounded-xl hover:bg-white/50 transition-all border border-transparent hover:border-slate-200"
                   >
                     <div className="bg-slate-100 text-slate-600 p-2 rounded-lg group-hover:text-white group-hover:bg-[#0077b5] transition-colors">
                       <span className="material-symbols-outlined">work</span>
                     </div>
                     <div className="flex-1">
-                      <p className="font-bold text-slate-900">
-                        LinkedIn
-                      </p>
+                      <p className="font-bold text-slate-900">LinkedIn</p>
                       <p className="text-xs text-slate-500">
-                        /in/developer-name
+                        /in/lalit2506verma
                       </p>
                     </div>
                     <span className="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">
@@ -99,17 +97,15 @@ export default function Contact() {
                     </span>
                   </a>
                   <a
-                    href="#"
+                    href="https://github.com/lalit2506verma"
                     className="group flex items-center gap-4 p-3 rounded-xl hover:bg-white/50 transition-all border border-transparent hover:border-slate-200"
                   >
                     <div className="bg-slate-100 text-slate-600 p-2 rounded-lg group-hover:text-white group-hover:bg-[#333] transition-colors">
                       <span className="material-symbols-outlined">code</span>
                     </div>
                     <div className="flex-1">
-                      <p className="font-bold text-slate-900">
-                        GitHub
-                      </p>
-                      <p className="text-xs text-slate-500">@developer-hub</p>
+                      <p className="font-bold text-slate-900">GitHub</p>
+                      <p className="text-xs text-slate-500">@lalit2506verma</p>
                     </div>
                     <span className="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">
                       arrow_forward
@@ -141,7 +137,7 @@ export default function Contact() {
                     <input
                       type="text"
                       id="name"
-                      placeholder="John Doe"
+                      placeholder="Your Good Name"
                       className="w-full px-4 py-3 rounded-xl bg-white/50 border border-slate-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-slate-400 text-slate-900"
                     />
                   </div>
@@ -155,7 +151,7 @@ export default function Contact() {
                     <input
                       type="email"
                       id="email"
-                      placeholder="john@example.com"
+                      placeholder="name@example.com"
                       className="w-full px-4 py-3 rounded-xl bg-white/50 border border-slate-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-slate-400 text-slate-900"
                     />
                   </div>

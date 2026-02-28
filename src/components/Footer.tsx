@@ -1,5 +1,6 @@
 import { FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { GrGithub } from "react-icons/gr";
+import { SiLeetcode } from "react-icons/si";
 
 export default function Footer() {
   return (
@@ -29,11 +30,18 @@ export default function Footer() {
             <FaLinkedinIn className="w-6 h-6" />
           </a>
           <a
-            href="#"
+            href="https://x.com/LalitKu77109264"
             className="text-slate-400 hover:text-primary transition-colors"
           >
             <span className="sr-only">Twitter</span>
-            <FaTwitter className="w-6 h-6"/>
+            <FaTwitter className="w-6 h-6" />
+          </a>
+          <a
+            href="https://leetcode.com/u/lalit2506/"
+            className="text-slate-400 hover:text-primary transition-colors"
+          >
+            <span className="sr-only">Leetcode</span>
+            <SiLeetcode className="w-6 h-6" />
           </a>
         </div>
       </div>
