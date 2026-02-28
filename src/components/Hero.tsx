@@ -1,5 +1,9 @@
 import { motion } from "motion/react";
-import { FaGithub, FaInstagram, FaInstagramSquare, FaLinkedin } from "react-icons/fa";
+import {
+  FaGithub,
+  FaInstagramSquare,
+  FaLinkedin,
+} from "react-icons/fa";
 
 export default function Hero() {
   return (
@@ -44,11 +48,11 @@ export default function Hero() {
               that holds up in production.
             </p>
             <div className="flex flex-wrap items-center gap-4 mt-2">
-              <button className="bg-primary hover:bg-blue-600 text-white px-8 py-4 rounded-xl text-base font-bold transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-1 flex items-center gap-2">
+              {/* <button className="bg-primary hover:bg-blue-600 text-white px-8 py-4 rounded-xl text-base font-bold transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-1 flex items-center gap-2">
                 View My Work
                 <span className="material-symbols-outlined">visibility</span>
-              </button>
-              <button className="bg-transparent hover:bg-slate-100 text-slate-700 border-2 border-slate-200 px-8 py-3.5 rounded-xl text-base font-bold transition-all hover:-translate-y-1 flex items-center gap-2">
+              </button> */}
+              <button className="bg-transparent hover:bg-slate-900 hover:text-white text-slate-700 border-2 border-slate-200 px-8 py-3.5 rounded-xl text-base font-bold transition-all hover:-translate-y-1 flex items-center gap-2">
                 <span className="material-symbols-outlined">download</span>
                 Download Resume
               </button>
@@ -178,14 +182,9 @@ export default function Hero() {
                   </div>
                 </div>
               </div>
-              <div className="absolute -right-8 -bottom-8 w-24 h-24 glass-card rounded-2xl flex items-center justify-center animate-bounce duration-[3000ms]">
+              <div className="absolute -right-8 -bottom-8 w-24 h-24 glass-card rounded-2xl flex items-center justify-center animate-bounce duration-3000">
                 <span className="material-symbols-outlined text-4xl text-primary">
                   code
-                </span>
-              </div>
-              <div className="absolute -left-4 -top-4 w-16 h-16 glass-card rounded-full flex items-center justify-center animate-pulse">
-                <span className="material-symbols-outlined text-2xl text-purple-500">
-                  dataset
                 </span>
               </div>
             </div>

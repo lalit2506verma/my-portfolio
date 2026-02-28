@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
 
 type Section = "home" | "projects" | "journey" | "contact";
@@ -9,30 +9,31 @@ export default function Navbar() {
   const [active, setActive] = useState<Section>("home");
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY + window.innerHeight / 2; // middle of viewport
+    const observers: IntersectionObserver[] = [];
 
-      let current: Section = "home";
+    sections.forEach((section) => {
+      const element = document.getElementById(section);
+      if (!element) return;
 
-      sections.forEach((section) => {
-        const element = document.getElementById(section);
-        if (!element) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActive(section);
+          }
+        },
+        {
+          // Fires when the section crosses the middle 20% band of the viewport
+          rootMargin: "-40% 0px -40% 0px",
+          threshold: 0,
+        },
+      );
 
-        if (element.offsetTop <= scrollY) {
-          current = section;
-        }
-      });
+      observer.observe(element);
+      observers.push(observer);
+    });
 
-      setActive(current);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // run once on mount
-
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => observers.forEach((obs) => obs.disconnect());
   }, []);
-
-  console.log(active);
 
   return (
     <motion.header
@@ -57,15 +58,26 @@ export default function Navbar() {
                 onClick={() => setActive(section)}
                 className="relative px-4 py-1.5 rounded-full text-sm font-medium transition-colors"
               >
-                {active == section && (
-                  <motion.span
-                    layoutId="nav-pill"
-                    className="absolute inset-0 rounded-full bg-white shadow-sm"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
-                )}
+                <AnimatePresence>
+                  {active === section && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      className="absolute inset-0 rounded-full bg-white shadow-sm"
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 30,
+                      }}
+                      initial={false}
+                    />
+                  )}
+                </AnimatePresence>
                 <span
-                  className={`relative z-10 transition-colors duration-200 ${active === section ? "text-primary font-bold" : "text-slate-600 hover:text-primary"}`}
+                  className={`relative z-10 transition-colors duration-200 ${
+                    active === section
+                      ? "text-primary font-bold"
+                      : "text-slate-600 hover:text-primary"
+                  }`}
                 >
                   {section.charAt(0).toUpperCase() + section.slice(1)}
                 </span>

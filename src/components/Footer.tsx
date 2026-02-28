@@ -1,3 +1,6 @@
+import { FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { GrGithub } from "react-icons/gr";
+
 export default function Footer() {
   return (
     <footer className="mt-auto glass-card border-t border-slate-200 backdrop-blur-md">
@@ -10,27 +13,27 @@ export default function Footer() {
             © 2025 Lalit Kumar Verma. All rights reserved.
           </span>
         </div>
-        <div className="flex gap-6">
+        <div className="flex gap-6 items-center">
           <a
-            href="#"
+            href="https://github.com/lalit2506verma"
             className="text-slate-400 hover:text-primary transition-colors"
           >
-            <span className="sr-only">GitHub</span>
-            <span className="material-symbols-outlined">code</span>
+            <span className="sr-only">Github</span>
+            <GrGithub className="w-6 h-6" />
           </a>
           <a
-            href="#"
+            href="https://www.linkedin.com/in/lalit2506verma/"
             className="text-slate-400 hover:text-primary transition-colors"
           >
             <span className="sr-only">LinkedIn</span>
-            <span className="material-symbols-outlined">work</span>
+            <FaLinkedinIn className="w-6 h-6" />
           </a>
           <a
             href="#"
             className="text-slate-400 hover:text-primary transition-colors"
           >
             <span className="sr-only">Twitter</span>
-            <span className="material-symbols-outlined">flutter_dash</span>
+            <FaTwitter className="w-6 h-6"/>
           </a>
         </div>
       </div>
