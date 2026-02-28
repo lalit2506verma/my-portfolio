@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1392ec;
+  --color-background-light: #f6f7f8;
+  --color-background-dark: #101a22;
+  --font-display: "Space Grotesk", sans-serif;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  }
+  .dark .glass-card {
+    background: rgba(16, 26, 34, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  }
+  .glass-nav {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+  .dark .glass-nav {
+    background: rgba(16, 26, 34, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .ambient-blob {
+    position: absolute;
+    filter: blur(80px);
+    z-index: 0;
+    opacity: 0.4;
+  }
+  .code-line {
+    display: flex;
+    gap: 1rem;
+    font-family: monospace;
+    opacity: 0.8;
+  }
+  .line-number {
+    color: #64748b;
+    user-select: none;
+  }
+  .code-content {
+    color: #cbcccd;
+  }
+  .dark .code-content {
+    color: #e2e8f0;
+  }
+  .keyword { color: #ec4899; }
+  .string { color: #22c55e; }
+  .function { color: #3b82f6; }
+  .variable { color: #f59e0b; }
+}
