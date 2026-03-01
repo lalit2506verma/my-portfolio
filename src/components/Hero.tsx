@@ -9,9 +9,9 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="flex-1 flex flex-col justify-center min-h-[calc(100vh-100px)] pt-20"
+      className="flex-1 flex flex-col justify-center min-h-[calc(100vh-100px)]"
     >
-      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20">
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-18">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -57,7 +57,7 @@ export default function Hero() {
                 Download Resume
               </button>
             </div>
-            <div className="flex items-center gap-6 mt-4 opacity-70">
+            <div className="flex items-center gap-6 mt-1 opacity-70">
               <a
                 href="https://github.com/lalit2506verma"
                 className="text-slate-500 hover:text-black transition-colors hover:scale-110 transform duration-200"

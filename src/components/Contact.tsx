@@ -225,7 +225,7 @@ export default function Contact() {
                       type="text"
                       id="from_name"
                       name="from_name"
-                      placeholder="Your Good Name"
+                      placeholder="Your Name"
                       className="w-full px-4 py-3 rounded-xl bg-white/50 border border-slate-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-slate-400 text-slate-900"
                     />
                   </div>

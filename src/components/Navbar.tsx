@@ -112,12 +112,16 @@ export default function Navbar() {
             ))}
           </nav>
         </div>
-        <button className="hidden md:flex bg-slate-900 hover:bg-primary text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all shadow-lg items-center gap-2 group">
+        <a
+          href="#contact"
+          onClick={() => handleNavClick("contact")}
+          className="hidden md:flex bg-slate-900 hover:bg-primary text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all shadow-lg items-center gap-2 group"
+        >
           <span>Let's Talk</span>
           <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">
             arrow_forward
           </span>
-        </button>
+        </a>
         <button
           onClick={() => setMenuOpen((prev) => !prev)}
           className="md:hidden p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors"
