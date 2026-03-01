@@ -1,6 +1,59 @@
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+
+const EMAILJS_TEMPLATE_ID = "template_rmps3rs";
+const EMAILJS_SERVICE_ID = "service_tc6utbf";
+const EMAILJS_PUBLIC_KEY = "7cCCjLa7nBaLrcv9-";
+
+type Status = "idle" | "sending" | "success" | "error";
 
 export default function Contact() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<Status>("idle");
+
+  const handleSubmit = async () => {
+    console.log("button clicked");
+    
+    if (!formRef.current) return;
+    console.log(formRef.current);
+    
+
+    // Basic validation
+    const data = new FormData(formRef.current);
+    if (
+      !data.get("from_name") ||
+      !data.get("from_email") ||
+      !data.get("message")
+    ) {
+      return;
+    }
+
+    setStatus("sending");
+    console.log("sending");
+    
+
+    try {
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        { publicKey: EMAILJS_PUBLIC_KEY },
+      );
+      setStatus("success");
+      formRef.current.reset();
+
+      // Reset Back
+      setTimeout(() => setStatus("idle"), 3000);
+    } catch (error) {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+      formRef.current.reset();
+    }
+  };
+
+  const isLoading = status === "sending";
+
   return (
     <section id="contact" className="flex justify-center py-20 px-4 md:px-8">
       <div className="w-full max-w-250 flex flex-col gap-10">
@@ -125,32 +178,68 @@ export default function Contact() {
           >
             <div className="glass-card p-8 md:p-10 rounded-2xl h-full relative overflow-hidden">
               <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
-              <form className="flex flex-col gap-6 relative z-10">
+
+              <AnimatePresence>
+                {status === "success" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="mb-6 flex items-center gap-3 p-4 rounded-xl bg-green-50 border border-green-200 text-green-700"
+                  >
+                    <span className="material-symbols-outlined text-green-500">
+                      check_circle
+                    </span>
+                    <p className="font-semibold text-sm">
+                      Message sent! I'll get back to you soon.
+                    </p>
+                  </motion.div>
+                )}
+                {status === "error" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="mb-6 flex items-center gap-3 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700"
+                  >
+                    <span className="material-symbols-outlined text-red-500">
+                      error
+                    </span>
+                    <p className="font-semibold text-sm">
+                      Something went wrong. Please try again.
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <form ref={formRef} className="flex flex-col gap-6 relative z-10">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label
-                      htmlFor="name"
+                      htmlFor="from_name"
                       className="text-sm font-bold text-slate-700 ml-1"
                     >
                       Name
                     </label>
                     <input
                       type="text"
-                      id="name"
+                      id="from_name"
+                      name="from_name"
                       placeholder="Your Good Name"
                       className="w-full px-4 py-3 rounded-xl bg-white/50 border border-slate-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-slate-400 text-slate-900"
                     />
                   </div>
                   <div className="space-y-2">
                     <label
-                      htmlFor="email"
+                      htmlFor="from_email"
                       className="text-sm font-bold text-slate-700 ml-1"
                     >
                       Email
                     </label>
                     <input
                       type="email"
-                      id="email"
+                      id="from_email"
+                      name="from_email"
                       placeholder="name@example.com"
                       className="w-full px-4 py-3 rounded-xl bg-white/50 border border-slate-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-slate-400 text-slate-900"
                     />
@@ -165,6 +254,7 @@ export default function Contact() {
                   </label>
                   <select
                     id="subject"
+                    name="subject"
                     className="w-full px-4 py-3 rounded-xl bg-white/50 border border-slate-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all text-slate-900"
                   >
                     <option>Project Inquiry</option>
@@ -182,6 +272,7 @@ export default function Contact() {
                   </label>
                   <textarea
                     id="message"
+                    name="message"
                     rows={5}
                     placeholder="Tell me about your project..."
                     className="w-full px-4 py-3 rounded-xl bg-white/50 border border-slate-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-slate-400 text-slate-900 resize-none"
@@ -190,12 +281,42 @@ export default function Contact() {
                 <div className="pt-2">
                   <button
                     type="button"
-                    className="group w-full bg-[#101a22] text-white hover:bg-primary py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-primary/25 transition-all flex items-center justify-center gap-2"
+                    onClick={handleSubmit}
+                    disabled={isLoading}
+                    className="group w-full bg-[#101a22] text-white hover:bg-primary py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-primary/25 transition-all flex items-center justify-center gap-2 disabled:opacity-60 hover:cursor-pointer"
                   >
-                    <span>Send Message</span>
-                    <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
-                      send
-                    </span>
+                    {isLoading ? (
+                      <>
+                        <svg
+                          className="animate-spin h-5 w-5 text-white"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8v8z"
+                          />
+                        </svg>
+                        <span>Sending...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Send Message</span>
+                        <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
+                          send
+                        </span>
+                      </>
+                    )}
                   </button>
                 </div>
               </form>
