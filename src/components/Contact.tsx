@@ -1,10 +1,11 @@
+/// <reference types="vite/client" />
 import { AnimatePresence, motion } from "motion/react";
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 
-const EMAILJS_TEMPLATE_ID = "template_rmps3rs";
-const EMAILJS_SERVICE_ID = "service_tc6utbf";
-const EMAILJS_PUBLIC_KEY = "7cCCjLa7nBaLrcv9-";
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -34,6 +35,10 @@ export default function Contact() {
     
 
     try {
+      console.log(EMAILJS_PUBLIC_KEY);
+      console.log(EMAILJS_SERVICE_ID);
+      
+      
       await emailjs.sendForm(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
@@ -49,6 +54,8 @@ export default function Contact() {
       setStatus("error");
       setTimeout(() => setStatus("idle"), 4000);
       formRef.current.reset();
+      console.log(error);
+      
     }
   };
 
@@ -283,7 +290,7 @@ export default function Contact() {
                     type="button"
                     onClick={handleSubmit}
                     disabled={isLoading}
-                    className="group w-full bg-[#101a22] text-white hover:bg-primary py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-primary/25 transition-all flex items-center justify-center gap-2 disabled:opacity-60 hover:cursor-pointer"
+                    className="group w-full bg-background-dark text-white hover:bg-primary py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-primary/25 transition-all flex items-center justify-center gap-2 disabled:opacity-60 hover:cursor-pointer"
                   >
                     {isLoading ? (
                       <>
