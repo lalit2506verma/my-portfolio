@@ -7,6 +7,7 @@ const sections: Section[] = ["home", "projects", "journey", "contact"];
 
 export default function Navbar() {
   const [active, setActive] = useState<Section>("home");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
@@ -35,8 +36,34 @@ export default function Navbar() {
     return () => observers.forEach((obs) => obs.disconnect());
   }, []);
 
+  // Close menu on outside click
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const handleOutside = (e: MouseEvent) => {
+      const nav = document.getElementById("main-navbar");
+      if (nav && !nav.contains(e.target as Node)) setMenuOpen(false);
+    };
+    document.addEventListener("mousedown", handleOutside);
+    return () => document.removeEventListener("mousedown", handleOutside);
+  }, [menuOpen]);
+
+  //Prevent body scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  const handleNavClick = (section: Section) => {
+    setActive(section);
+    setMenuOpen(false);
+  };
+
   return (
     <motion.header
+      id="main-navbar"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -91,10 +118,69 @@ export default function Navbar() {
             arrow_forward
           </span>
         </button>
-        <button className="md:hidden p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors">
-          <span className="material-symbols-outlined">menu</span>
+        <button
+          onClick={() => setMenuOpen((prev) => !prev)}
+          className="md:hidden p-2 rounded-lg hover:bg-slate-100 text-slate-700 transition-colors"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+        >
+          <motion.span
+            key={menuOpen ? "close" : "menu"}
+            initial={{ rotate: -90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            transition={{ duration: 0.2 }}
+            className="material-symbols-outlined block"
+          >
+            {menuOpen ? "close" : "menu"}
+          </motion.span>
         </button>
       </div>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="md:hidden overflow-hidden"
+          >
+            <div className="pt-4 pb-2 flex flex-col gap-1 border-t border-slate-200/60 mt-4">
+              {sections.map((section) => (
+                <a
+                  key={section}
+                  href={`#${section}`}
+                  onClick={() => handleNavClick(section)}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition-all ${
+                    active === section
+                      ? "bg-primary/10 text-primary"
+                      : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                  }`}
+                >
+                  {/* Active indicator dot */}
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                      active === section ? "bg-primary" : "bg-slate-300"
+                    }`}
+                  />
+                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                </a>
+              ))}
+
+              {/* FIX 3: "Let's Talk" CTA visible in mobile menu */}
+              <a
+                href="#contact"
+                onClick={() => handleNavClick("contact")}
+                className="mt-2 flex items-center justify-center gap-2 bg-slate-900 hover:bg-primary text-white px-5 py-3 rounded-xl text-sm font-bold transition-all"
+              >
+                <span>Let's Talk</span>
+                <span className="material-symbols-outlined text-lg">
+                  arrow_forward
+                </span>
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

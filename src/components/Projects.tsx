@@ -53,6 +53,31 @@ const projects = [
   },
 ];
 
+const certifications = [
+  {
+    title: "AWS Certified Developer – Associate",
+    issuer: "Amazon Web Services",
+    date: "July 2025",
+    credentialUrl:
+      "https://cp.certmetrics.com/amazon/en/public/verify/credential/bd06ea797343432bbbdf83b2c8f218aa",
+    icon: "cloud",
+    iconBg: "bg-orange-500",
+    field: "Cloud",
+    fieldColor: "bg-orange-50 text-orange-700 border-orange-200",
+  },
+  {
+    title: "AWS Certified Cloud Practitioner",
+    issuer: "Amazon Web Services",
+    date: "Sep 2022",
+    credentialUrl:
+      "https://cp.certmetrics.com/amazon/en/public/verify/credential/R1M5BXSCTER1173J",
+    icon: "cloud",
+    iconBg: "bg-blue-600",
+    field: "Cloud",
+    fieldColor: "bg-blue-50 text-blue-700 border-blue-200",
+  },
+];
+
 const contributions = [
   {
     repo: "JabRef Contribution",
@@ -94,8 +119,11 @@ const typeConfig: Record<string, string> = {
 
 export default function Projects() {
   return (
-    <section id="projects" className="flex justify-center py-20 px-4 md:px-8">
-      <div className="w-full max-w-250 flex flex-col gap-10">
+    <section
+      id="projects"
+      className="flex justify-center py-12 md:py-20 px-4 md:px-8"
+    >
+      <div className="w-full max-w-250 flex flex-col gap-10 md:gap-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -122,7 +150,6 @@ export default function Projects() {
           <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-transparent via-primary/20 to-transparent -translate-x-1/2 h-full hidden md:block blur-[2px]"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map((project, index) => {
-
               const s = statusConfig[project.status];
 
               return (
@@ -205,10 +232,10 @@ export default function Projects() {
             viewport={{ once: true }}
             className="flex items-center gap-3"
           >
-            <span className="material-symbols-outlined text-violet-500">
+            <span className="material-symbols-outlined text-violet-500 shrink-0">
               hub
             </span>
-            <h3 className="text-xl font-black text-slate-800">
+            <h3 className="text-xl font-black text-slate-800 shrink-0">
               Open Source Contributions
             </h3>
             <div className="flex-1 h-px bg-slate-200 ml-2" />
@@ -225,7 +252,7 @@ export default function Projects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.08 }}
-                className="group flex items-start gap-5 p-5 rounded-2xl border border-slate-200 bg-white/50 backdrop-blur-sm hover:border-violet-300 hover:bg-violet-50/30 hover:shadow-md hover:shadow-violet-100 transition-all duration-300"
+                className="group flex items-start gap-3 md:gap-5 p-4 md:p-5 rounded-2xl border border-slate-200 bg-white/50 backdrop-blur-sm hover:border-violet-300 hover:bg-violet-50/30 hover:shadow-md hover:shadow-violet-100 transition-all duration-300"
               >
                 {/* Left — repo icon */}
                 <div className="shrink-0 w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center text-white group-hover:bg-violet-600 transition-colors">
@@ -255,7 +282,7 @@ export default function Projects() {
                 </div>
 
                 {/* Right — meta */}
-                <div className="shrink-0 flex flex-col items-end gap-2 text-right">
+                <div className="shrink-0 flex flex-col items-end gap-2 text-right sm:hidden">
                   <div className="flex items-center gap-1 text-xs text-slate-400">
                     <span className="material-symbols-outlined text-sm">
                       star
@@ -270,6 +297,79 @@ export default function Projects() {
                   </div>
                   <span className="material-symbols-outlined text-slate-300 group-hover:text-violet-400 group-hover:translate-x-0.5 -translate-y-0.5 transition-all text-base">
                     arrow_outward
+                  </span>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-6">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex items-center gap-3"
+          >
+            <span className="material-symbols-outlined text-amber-500">
+              workspace_premium
+            </span>
+            <h3 className="text-xl font-black text-slate-800">
+              Certifications
+            </h3>
+            <div className="flex-1 h-px bg-slate-200 ml-2" />
+          </motion.div>
+
+          <div className="flex flex-col gap-4">
+            {certifications.map((cert, index) => (
+              <motion.a
+                key={index}
+                href={cert.credentialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
+                className="group flex items-start gap-5 p-5 rounded-2xl border border-slate-200 bg-white/50 backdrop-blur-sm hover:border-amber-300 hover:bg-amber-50/30 hover:shadow-md hover:shadow-amber-100 transition-all duration-300"
+              >
+                {/* Left — issuer icon */}
+                <div
+                  className={`shrink-0 w-10 h-10 rounded-xl ${cert.iconBg} flex items-center justify-center text-white group-hover:scale-110 transition-transform`}
+                >
+                  <span className="material-symbols-outlined text-lg">
+                    {cert.icon}
+                  </span>
+                </div>
+
+                {/* Middle — content */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <span className="font-black text-slate-900 text-sm group-hover:text-amber-700 transition-colors">
+                      {cert.title}
+                    </span>
+                    <span
+                      className={`px-2 py-0.5 text-xs font-bold rounded-full border ${cert.fieldColor}`}
+                    >
+                      {cert.field}
+                    </span>
+                  </div>
+                  <p className="text-slate-500 text-sm">{cert.issuer}</p>
+                </div>
+
+                {/* Right — date + verify */}
+                <div className="shrink-0 flex flex-col items-end gap-2 text-right">
+                  <div className="flex items-center gap-1 text-xs text-slate-400">
+                    <span className="material-symbols-outlined text-sm">
+                      calendar_today
+                    </span>
+                    {cert.date}
+                  </div>
+                  <span className="text-xs font-bold text-amber-500 group-hover:text-amber-600 flex items-center gap-0.5 transition-colors">
+                    View credential
+                    <span className="material-symbols-outlined text-sm group-hover:translate-x-0.5 transition-transform">
+                      arrow_outward
+                    </span>
                   </span>
                 </div>
               </motion.a>
