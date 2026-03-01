@@ -160,7 +160,8 @@ export default function Projects() {
                     </p>
                     <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
                       <a
-                        href="#"
+                        href={project.url}
+                        target="_blank"
                         className="inline-flex items-center gap-1 text-sm font-bold text-slate-900 hover:text-primary transition-colors"
                       >
                         View Project{" "}
@@ -169,7 +170,7 @@ export default function Projects() {
                         </span>
                       </a>
                       <a
-                        href="#"
+                        href={project.url}
                         aria-label="View on GitHub"
                         className="text-slate-400 hover:text-slate-900 transition-colors"
                       >

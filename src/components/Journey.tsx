@@ -2,40 +2,49 @@ import { motion } from "motion/react";
 
 const milestones = [
   {
-    title: "Junior Developer",
-    subtitle: "TechCorp Inc.",
-    date: "Jan 2023 - Present",
+    title: "Senior Software Engineer",
+    subtitle: "HCL Technologies",
+    date: "Dec 2025 - Present",
     description:
-      "Developing frontend features using React and Tailwind CSS. Collaborating with senior devs to improve code quality and implement accessibility standards across the platform.",
-    icon: "work",
+      "Leading enterprise application enhancements, resolving complex production issues, and contributing to automate solution reducing 40% manual effort",
+    icon: "workspace_premium",
     isLeft: true,
   },
   {
-    title: "BS in Computer Science",
-    subtitle: "University of Technology",
-    date: "Sep 2019 - May 2023",
+    title: "Open Source Contribution",
+    subtitle: "JabRef (GitHub)",
+    date: "9 Dec 2025",
     description:
-      "Graduated with Honors. Focused on Algorithms, Data Structures, and Web Technologies. Capstone project involved building a real-time chat application.",
+      "Contributed to the open-source reference manager JabRef by improving preference handling logic, enhancing maintainability and code quality.",
+    icon: "code",
+    isLeft: false,
+  },
+  {
+    title: "Completed BCA",
+    subtitle: "Amity University Online",
+    date: "July 2022 - Aug 2025",
+    description:
+      "Graduated with focus on data structures, algorithms, and software engineering while gaining real-world enterprise development experience.",
     icon: "school",
-    isLeft: false,
-  },
-  {
-    title: "First Open Source PR",
-    subtitle: "GitHub Contribution",
-    date: "June 2021",
-    description:
-      "Contributed a bug fix to a popular React component library. This experience taught me about code review processes, git workflows, and community collaboration.",
-    icon: "code_off",
     isLeft: true,
   },
   {
-    title: "Hello World!",
-    subtitle: "Self-Taught",
-    date: "March 2019",
+    title: "Software Engineer",
+    subtitle: "HCL Technologies",
+    date: "Sep 2022 - Dec 2025",
     description:
-      "Wrote my first line of Python code. Started with automating simple tasks and fell in love with the logic and creativity of programming.",
-    icon: "terminal",
+      "Worked on enterprise SAP P2P systems, performing root cause analysis, debugging integrations, and delivering enhancements in Agile teams.",
+    icon: "work",
     isLeft: false,
+  },
+  {
+    title: "HCL TechBee Intern",
+    subtitle: "Early Career Program",
+    date: "July 2021 - Aug 2022",
+    description:
+      "Began professional journey through TechBee program, building strong foundations in Java and structured software development.",
+    icon: "terminal",
+    isLeft: true,
   },
 ];
 
